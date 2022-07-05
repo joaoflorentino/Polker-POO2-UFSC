@@ -8,7 +8,7 @@
 # Imports 
 from tkinter import *
 import tkinter.font  as tkF
-from PIL  import Image
+from PIL  import Image, ImageTk
 
 # Importação para colocar os dados do deck de cartas na label
 from  cartasDeck import *
@@ -69,20 +69,111 @@ class Telatk():
         #Criando os labels
         j1 = dictJogs.get('Jog01')
         text01 = (f'Banca = {j1}')
-
         j2 = dictJogs.get('Jog02')
         text02 = (f'Jog02 = {j2}')
-
         j3 = dictJogs.get('Jog03')
         text03 = (f'Jog03 = {j3}')
-
-       
         ## Artribui as caras distribuidas  ao varg  
         self.distribuido1.set(text01)
         self.distribuido2.set(text02)
         self.distribuido3.set(text03)
-        
+        ## Mostra as mãos no frame 02
+        # -=-=-=-=-=-=-=-=-=   FRAME  02 =-=-=-=-=-=-=-=-=-=
+       
+        # Distribuição de cartas da mesa da Jogada
+        lb11 = Label(self.frame2, font=('nimbus sans l', 9), bg=self.c2, fg=self.c4, textvariable= self.distribuido1, justify='left', wraplength= 400)
+        lb11.place(relx=0.02, rely=0.11)
+        ## Cartas do baralho jogador MESA
+        w = Canvas(self.janela) # Gera imagem no canvas para inserção no frame
+        #carta 01
+        c0 = j1[0]
+        ima1 = self.reduzImage(c0)
+        ## Passar para o label onde a carta aparecerá 
+        w.create_image(0,0, image=ima1) # chama imagem no canvas
+        w.image1 = ima1 # gera o w imagem para inserção no Label
+        lbc1 = Label(self.frame2, image=w.image1)
+        lbc1.place(relx=0.02, rely=0.21 )
+        #carta 02,
+        c1 = j1[1]
+        ima2 = self.reduzImage(c1)
+        ## Passar para o label onde a carta aparecerá 
+        w.create_image(0,0, image=ima2) # chama imagem no canvas
+        w.image2 = ima2 # gera o w imagem para inserção no Label
+        lbc2 = Label(self.frame2, image=w.image2)
+        lbc2.place(relx=0.10, rely=0.21 )
+        #carta 03
+        c2 = j1[2]
+        ima3 = self.reduzImage(c2)
+        ## Passar para o label onde a carta aparecerá 
+        w.create_image(0,0, image=ima3) # chama imagem no canvas
+        w.image3 = ima3 # gera o w imagem para inserção no Label
+        lbc3 = Label(self.frame2, image=w.image3)
+        lbc3.place(relx=0.18, rely=0.21 )
+        #carta 04
+        c3 = j1[3]
+        ima4 = self.reduzImage(c3)
+        ## Passar para o label onde a carta aparecerá 
+        w.create_image(0,0, image=ima4) # chama imagem no canvas
+        w.image4 = ima4 # gera o w imagem para inserção no Label
+        lbc4 = Label(self.frame2, image=w.image4)
+        lbc4.place(relx=0.26, rely=0.21 )
+        #carta 05
+        c4 = j1[4]
+        ima5 = self.reduzImage(c4)
+        ## Passar para o label onde a carta aparecerá 
+        w.create_image(0,0, image=ima5) # chama imagem no canvas
+        w.image5 = ima5 # gera o w imagem para inserção no Label
+        lbc5 = Label(self.frame2, image=w.image5)
+        lbc5.place(relx=0.34, rely=0.21 )
 
+
+        lb12 = Label(self.frame2, font=('nimbus sans l', 9), bg=self.c2, fg=self.c4, textvariable= self.distribuido2, justify='left', wraplength= 400)
+        lb12.place(relx=0.02, rely=0.44)
+
+        #carta 01
+        d0 = j2[0]
+        lbcJog1 = Label(self.frame2, text= d0)
+        lbcJog1.place(relx=0.02, rely=0.57 )
+        #carta 02
+        d1 = j2[1]
+        lbcJog2 = Label(self.frame2, text= d1)
+        lbcJog2.place(relx=0.10, rely=0.57 )
+        #carta 03
+        d2 = j1[2]
+        lbcJog3 = Label(self.frame2, text= d2)
+        lbcJog3.place(relx=0.18, rely=0.57 )
+        #carta 04
+        d3 = j1[3]
+        lbcJog4 = Label(self.frame2, text= d3)
+        lbcJog4.place(relx=0.26, rely=0.57 )
+        #carta 05
+        d4 = j1[4]
+        lbcJog5 = Label(self.frame2, text= d4)
+        lbcJog5.place(relx=0.34, rely=0.57 )
+
+        #### Jogador 03
+        lb13 = Label(self.frame2, font=('nimbus sans l', 9), bg=self.c2, fg=self.c4, textvariable= self.distribuido3, justify='left', wraplength= 400)
+        lb13.place(relx=0.02, rely=0.72)
+
+        t0 = j3[0]
+        lbcJogb1 = Label(self.frame2, text= t0)
+        lbcJogb1.place(relx=0.02, rely=0.85 )
+        #carta 02
+        t1 = j3[1]
+        lbcJogb2 = Label(self.frame2, text= t1)
+        lbcJogb2.place(relx=0.10, rely=0.85 )
+        #carta 03
+        t2 = j3[2]
+        lbcJogb3 = Label(self.frame2, text= t2)
+        lbcJogb3.place(relx=0.18, rely=0.85 )
+        #carta 04
+        t3 = j3[3]
+        lbcJogb4 = Label(self.frame2, text= t3)
+        lbcJogb4.place(relx=0.26, rely=0.85 )
+        #carta 05
+        t4 = j3[4]
+        lbcJogb5 = Label(self.frame2, text= t4)
+        lbcJogb5.place(relx=0.34, rely=0.85 )
 
     def framesScreem (self):
         '''Função que define o tamnho e a posição dos frames'''
@@ -92,11 +183,11 @@ class Telatk():
         #O codigo acima define uma area responsiva para o frame 1 e o tamnho responsivo dele 
         # FRAME 2
         self.frame2 = Frame(self.janela, bd=4 ,bg=self.c2, highlightbackground=self.c3, highlightthickness=3)
-        self.frame2.place(relx=0.01, rely=0.33, relwidth=0.98, relheight=0.32)
+        self.frame2.place(relx=0.01, rely=0.33, relwidth=0.98, relheight=0.50)
         #O codigo acima define uma area responsiva para o frame 1 e o tamnho responsivo dele 
         # FRAME 3
         self.frame3 = Frame(self.janela, bd=4 ,bg=self.c2, highlightbackground=self.c3, highlightthickness=3)
-        self.frame3.place(relx=0.01, rely=0.66, relwidth=0.98, relheight=0.33)
+        self.frame3.place(relx=0.01, rely=0.84, relwidth=0.98, relheight=0.15)
         #O codigo acima define uma area responsiva para o frame 1 e o tamnho responsivo dele 
        
        ## Lay-out ####
@@ -132,19 +223,9 @@ class Telatk():
         self.cmd_GraficoInterativo = Button(self.frame1, text='Distribui',bd=3, bg='#f0b207', command= self.importaTextos02)
         self.cmd_GraficoInterativo.place(relx=0.75,rely=0.75)
 
-        # -=-=-=-=-=-=-=-=-=   FRAME  02 =-=-=-=-=-=-=-=-=-=
-       
+        # -=-=-=-=-=-=-=-=-=   FRAME  02 Titulo =-=-=-=-=-=-=-=-=-=
         lb10 = Label(self.frame2, text='Cartas dos três Jogadores', font=('nimbus sans l', 15), bg=self.c2, fg=self.c4)
         lb10.place(relx=0.24, rely=0.00)
-
-        lb11 = Label(self.frame2, font=('nimbus sans l', 9), bg=self.c2, fg=self.c4, textvariable= self.distribuido1, justify='left', wraplength= 400)
-        lb11.place(relx=0.02, rely=0.14)
-
-        lb12 = Label(self.frame2, font=('nimbus sans l', 9), bg=self.c2, fg=self.c4, textvariable= self.distribuido2, justify='left', wraplength= 400)
-        lb12.place(relx=0.02, rely=0.44)
-
-        lb13 = Label(self.frame2, font=('nimbus sans l', 9), bg=self.c2, fg=self.c4, textvariable= self.distribuido3, justify='left', wraplength= 400)
-        lb13.place(relx=0.02, rely=0.74)
 
         # -=-=-=-=-=-=-=-=-=   FRAME  03 =-=-=-=-=-=-=-=-=-=
 
@@ -162,19 +243,17 @@ class Telatk():
         '''Função que reduz resolucao de uma imagem 
         .png para colocar no Label TK'''
         self.card = carta ## Recebe a imagem da carta a ser reduzida
-        iume = Image.open(f'imageCards/{self.card}.png') #Prepara arquivo pgn para resize
-        wi = iume.width //  3# Reduz imagem em 3 vezes(Somente numeros inteiros)
-        h = iume.height //  3 # Reduz imagem em 3 vezes(Somente numeros inteiros)
+        arq = str(self.card + '.png')
+        print(arq)
+        iume = Image.open(f'imageCards/{arq}') #Prepara arquivo pgn para resize
+        wi = iume.width //  14# Reduz imagem em 3 vezes(Somente numeros inteiros)
+        h = iume.height //  12 # Reduz imagem em 3 vezes(Somente numeros inteiros)
         res = iume.resize((wi,h)) #Chama a função de redimensionamento
         #res.save('graficos/new4.png') # Salva nova imagem no arquivo
-        w = Canvas(self.janela) # Gera imagem no canvas para inserção no frame
-        gra04= PhotoImage(file= res) # gera arquivo no Photoimage
-        #gra04= PhotoImage(file= 'imageCards/new4.png') # gera arquivo no Photoimage
+        iume = ImageTk.PhotoImage(res)  ## Carrega novamente a imagem reduzida no arquivo
+        return (iume)
 
-        ## Passar para o label onde a carta aparecerá 
-        w.create_image(0,0, image=gra04) # chama imagem no canvas
-        w.image = gra04 # gera o w imagem para inserção no Label
-        return (gra04)
+
 
 if __name__ == '__main__':
 
