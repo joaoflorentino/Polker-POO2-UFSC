@@ -10,8 +10,9 @@ from tkinter import *
 import tkinter.font  as tkF
 from PIL  import Image, ImageTk
 
-# Importação para colocar as cartas na label
+# Meus Imports
 from  cartasDeck import *
+import ganhador 
 
 ## FONTES TTF
 
@@ -78,6 +79,11 @@ class Telatk():
         self.distribuido1.set(text01)
         self.distribuido2.set(text02)
         self.distribuido3.set(text03)
+
+        ## Separa listas 
+        self.listaMesa = j1
+        self.listaJog1 = j2
+        self.listaJog2 = j3
         ## Mostra as mãos no frame 02
 
         # -=-=-=-=-=-=-=-=-=   FRAME  02 =-=-=-=-=-=-=-=-=-=
@@ -218,6 +224,15 @@ class Telatk():
         w.image15 = ima15 # gera o w imagem para inserção no Label
         lbcJogb5 = Label(self.frame2, image= w.image15)
         lbcJogb5.place(relx=0.84, rely=0.21 )
+    
+    def avalia(self):
+        '''Função que traz do arquivo ganhador o 
+        resultado do jovo e apresenta na tel do Tkinter'''
+        jogo = ganhador.Vencedor(self.listaMesa, self.listaJog1, self.listaJog2)
+        resultado = jogo.inicia()
+        print()
+        print(resultado)
+
 
     def framesScreem (self):
         '''Função que define o tamanho e a posição dos frames'''
@@ -272,7 +287,9 @@ class Telatk():
         lb10.place(relx=0.24, rely=0.00)
 
         # -=-=-=-=-=-=-=-=-=   FRAME  03 =-=-=-=-=-=-=-=-=-=
-
+        ## Botao Ver Vencedor
+        self.resultado = Button(self.frame3, text='  VENCEDOR  ',bd=3, bg='#f7ef59', command= self.avalia )
+        self.resultado.place(relx=0.01,rely=0.01)
     
     ## =-=-=-=-=-=-=  Funcoes que geram e organizam imagem =-=-=-=-=-=-=
     def reduzImage(self, carta):
