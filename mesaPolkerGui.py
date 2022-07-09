@@ -1,5 +1,5 @@
  #******************************************
-# Trabalho Deck de cartas - POO II  UFSC 2022-1
+# Trabalho Jogo de Poker - POO II  UFSC 2022-1
 # Desenvolvedor  João Florentino
 # numero 17150281
 # ******************************************
@@ -10,7 +10,7 @@ from tkinter import *
 import tkinter.font  as tkF
 from PIL  import Image, ImageTk
 
-# Importação para colocar os dados do deck de cartas na label
+# Importação para colocar as cartas na label
 from  cartasDeck import *
 
 ## FONTES TTF
@@ -18,8 +18,9 @@ from  cartasDeck import *
 ##  GUI  
 class Telatk():
     def __init__(self) -> None:
-        '''Classe que gera a GUI onde o usuário entra os dados do grafico
-        visualisa o grafico e com botoes interage com o resultado'''
+        '''Classe que gera a GUI onde o usuário para 
+        intergir com o jogo
+        '''
         ### CORES =====
         self.c1 = '#265207'  #Cor do fundo de tela geral
         self.c2 = '#4f8529' #Cor de fundo do  Frame
@@ -37,7 +38,7 @@ class Telatk():
     
     def telaScreem (self):
         '''Função que define o formato geral da tela '''
-        self.janela.title(' POLKER -  POO II - UFSC - 2022-1 ')
+        self.janela.title(' POKER -  POO II - UFSC - 2022-1 ')
         self.janela.configure(bg=self.c1)
         self.janela.geometry('1200x600')
         self.janela.resizable(True, True)  # Permite a janela ser aumentada ou diminuida tanto em x quanto em  y
@@ -219,7 +220,7 @@ class Telatk():
         lbcJogb5.place(relx=0.84, rely=0.21 )
 
     def framesScreem (self):
-        '''Função que define o tamnho e a posição dos frames'''
+        '''Função que define o tamanho e a posição dos frames'''
         # FRAME 1
         self.frame1 = Frame(self.janela, bd=4 ,bg=self.c2, highlightbackground=self.c3, highlightthickness=3)
         self.frame1.place(relx=0.01, rely=0.02, relwidth=0.98, relheight=0.30)
@@ -235,10 +236,10 @@ class Telatk():
        
        ## Lay-out ####
        # -=-=-=-=-=-=-=-=-=   FRAME  01 =-=-=-=-=-=-=-=-=-=
-        lb01 = Label(self.frame1, text='POLKER - UFSC -  POO II ', font=('nimbus sans l', 14), bg=self.c2, fg=self.c4)
+        lb01 = Label(self.frame1, text='POKER - UFSC -  POO II ', font=('nimbus sans l', 14), bg=self.c2, fg=self.c4)
         lb01.place(relx=0.30, rely=0.05)
 
-        lb02 = Label(self.frame1, text='Jogo de Polker com 52 cartas do baralho,  embaralhadas e distribuida para 3 Jogadores', font=('nimbus sans l', 10), bg=self.c2, fg=self.c5)
+        lb02 = Label(self.frame1, text='Jogo de Poker com 52 cartas do baralho,  embaralhadas e distribuida para 3 Jogadores', font=('nimbus sans l', 10), bg=self.c2, fg=self.c5)
         lb02.place(relx=0.01, rely=0.20)
 
         lb03 = Label(self.frame1, text='As cartas são divididas nos seguintes nipes:', font=('nimbus sans l', 10), bg=self.c2, fg=self.c5)
@@ -272,15 +273,7 @@ class Telatk():
 
         # -=-=-=-=-=-=-=-=-=   FRAME  03 =-=-=-=-=-=-=-=-=-=
 
-    ### ANTIGO FRAME 02(mostra o baralho-embaralhado) - APAGAR MAIS TARDE
-    '''
-    lb08 = Label(self.frame2, text='Baralho Embaralhado', font=('nimbus sans l', 15), bg=self.c2, fg=self.c4)
-        lb08.place(relx=0.30, rely=0.02)
-
-        lb09 = Label(self.frame2, font=('nimbus sans l', 13), bg=self.c2, fg=self.c4, textvariable= self.embaralhado, justify='left', wraplength= 400)
-        lb09.place(relx=0.02, rely=0.25)
-
-    '''
+    
     ## =-=-=-=-=-=-=  Funcoes que geram e organizam imagem =-=-=-=-=-=-=
     def reduzImage(self, carta):
         '''Função que reduz resolucao de uma imagem 
@@ -295,6 +288,11 @@ class Telatk():
         iume = ImageTk.PhotoImage(res)  ## Carrega novamente a imagem reduzida no arquivo
         return (iume)
 
+        
+###############
+##### MAIN #####
+''' Para teste deste arquivo não roda quando 
+chamado em outros arquivos'''
 
 
 if __name__ == '__main__':

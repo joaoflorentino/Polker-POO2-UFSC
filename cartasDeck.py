@@ -1,11 +1,11 @@
 #### 
-# Programa Deck de cartas Disciplina POO II  - UFSC 2022-1
+# Programa Poker Disciplina POO II  - UFSC 2022-1
 # Desenvolvedor - Luis Florentino  n- 17150281
 ####
-'''Desafio Deck de Cartas
-Escreva um programa em python que embaralha e distribui um baralho de 
-cartas para nove jogadores diferentes.Você pode usar quaisquer recursos 
-python que tenha a disposição.'''
+''' Programa que simula um jogo de cartas Poer básico
+que avalia o ganhador de uma distribuição de 05 cartas 
+sem trocas de cartas
+'''
 
 from random import  randint, random, shuffle
 
@@ -98,7 +98,8 @@ class Distribui():
 
 ###############
 ##### MAIN #####
- 
+''' Para teste deste arquivo não roda quando 
+chamado em outros arquivos'''
 if __name__ == '__main__':
     jogada01 = Baralho()                       ## Inicia o jogo criando um baralho novo 
     kt = jogada01.embaralhar()          ## Armazena lista com as cartas já embaralhadas
