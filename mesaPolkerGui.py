@@ -28,6 +28,8 @@ class Telatk():
         self.c3 = '#0c4006' #Cor da borda do Frame
         self.c4 = '#f7f01b' #Cor Texto
         self.c5 = '#f5f5f2' #Cor Texto quase branca
+        self.c6 ='#e6659b' ##Cor botão Vencedor >Rosa
+        self.c7 = '#f55d4c' ## Cor background texto vencedor > Vermelho
         
         # Demais funcoes de tela
         self.janela = Tk()
@@ -50,9 +52,8 @@ class Telatk():
         self.distribuido1 = StringVar()
         self.distribuido2 = StringVar()
         self.distribuido3 = StringVar()
-       
-
-
+        self.vencedor = StringVar()
+    
     def importaTextos(self):
 
         ## Buscando o Texto do Programa Deckcartas
@@ -230,8 +231,12 @@ class Telatk():
         resultado do jovo e apresenta na tel do Tkinter'''
         jogo = ganhador.Vencedor(self.listaMesa, self.listaJog1, self.listaJog2)
         resultado = jogo.inicia()
+        if resultado == None:
+            resultado = (f'EMPATE  ou   NADA NAS MÃOS')
         print()
         print(resultado)
+        self.vencedor.set(resultado)
+
 
 
     def framesScreem (self):
@@ -288,10 +293,11 @@ class Telatk():
 
         # -=-=-=-=-=-=-=-=-=   FRAME  03 =-=-=-=-=-=-=-=-=-=
         ## Botao Ver Vencedor que utiliza o arquivo ganhador classe vencedor
-        self.resultado = Button(self.frame3, text='  VENCEDOR  ',bd=3, bg='#f7ef59', command= self.avalia )
+        self.resultado = Button(self.frame3, text='  VENCEDOR  ',bd=3, bg='#e6659b', command= self.avalia )
         self.resultado.place(relx=0.01,rely=0.01)
         ## Exibe o Resultado do jogo 
-        
+        lb20 = Label(self.frame3, font=('nimbus sans l', 11), bg=self.c7, fg=self.c4, textvariable= self.vencedor, justify='left', wraplength= 800)
+        lb20.place(relx=0.05, rely=0.60)
     
     ## =-=-=-=-=-=-=  Funcoes que geram e organizam imagem =-=-=-=-=-=-=
     def reduzImage(self, carta):

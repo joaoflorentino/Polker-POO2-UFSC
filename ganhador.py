@@ -28,6 +28,7 @@ class Vencedor:
     
     ## Organiza avaliação 
     def inicia(self):
+        '''Cria lista com pontuação de cada jogador'''
         lista = []
         maos = {'M': self.jogadorMesa, 'J1' :self.jogador1, 'J2': self.jogador2 }
         ## Jogos possiveis de vitoria organizados em um dicionario
@@ -37,15 +38,15 @@ class Vencedor:
             pontos = self.pontuacao(hand)
             lista.append(pontos)
         if lista[0] > lista[1] and lista[0] > lista[2]:
-            texto = f'O Vencedor é a MESA. Com o Jogo {jogosPoker[lista[0]]} com a mão{self.jogadorMesa}'
+            texto = f'O Vencedor é a MESA. Com o Jogo   {jogosPoker[lista[0]]}   com a mão  {self.jogadorMesa}'
             print(texto)
             return texto
         elif lista[1] > lista[0] and lista[1] > lista[2]:
-            texto = f'O Vencedor é o JOGADOR 1. Com o Jogo {jogosPoker[lista[1]]} com a mão{self.jogador1}'
+            texto = f'O Vencedor é o JOGADOR 1. Com o Jogo   {jogosPoker[lista[1]]}   com a mão  {self.jogador1}'
             print(texto)
             return texto
         elif lista[2] > lista[0] and lista[2] > lista[1]:
-            texto = f'O Vencedor é a JOGADOR 2. Com o Jogo {jogosPoker[lista[2]]} com a mão{self.jogador2}'
+            texto = f'O Vencedor é a JOGADOR 2. Com o Jogo   {jogosPoker[lista[2]]}   com a mão  {self.jogador2}'
             print(texto)
             return texto
 
@@ -58,6 +59,7 @@ class Vencedor:
             return False
 
     def quadra(self, mao):
+        '''Fucao que separa ocorrencia de quadra'''
         valores = [i[0] for i in mao]
         contaValor = defaultdict(lambda:0)
         for v in valores:
@@ -68,6 +70,7 @@ class Vencedor:
             return False
 
     def full_house(self, mao):
+        '''Fucao que separa ocorrencia de Full_House'''
         valores = [i[0] for i in mao]
         contaValor = defaultdict(lambda:0)
         for v in valores:
@@ -78,6 +81,7 @@ class Vencedor:
             return False
 
     def flush(self, mao):
+        '''Fucao que separa ocorrencia de flush mesmos naipes sem ordem'''
         naipes = [i[1] for i in mao]
         if len(set(naipes)) == 1:
             return True
@@ -85,6 +89,7 @@ class Vencedor:
             return False
 
     def sequencia(self, mao):
+        '''Fucao que separa ocorrencia de sequencia sem mesmos naipes'''
         valores = [i[0] for i in mao]
         contaValor = defaultdict(lambda:0)
         for v in valores:
@@ -100,16 +105,18 @@ class Vencedor:
                 return False
 
     def trinca(self, mao):
+        '''Fucao que separa ocorrencia de trinca'''
         valores = [i[0] for i in mao]
         contaValor = defaultdict(lambda:0)
         for v in valores:
             contaValor[v] += 1
-        if sorted (contaValor.values()) == [3,1]:
+        if set(contaValor.values()) == set([3,1]):
             return True
         else:
             return False
 
     def dois_pares(self, mao):
+        '''Fucao que separa ocorrencia de Dois_Pares'''
         valores = [i[0] for i in mao]
         contaValor = defaultdict(lambda:0)
         for v in valores:
@@ -120,6 +127,7 @@ class Vencedor:
             return False
 
     def par(self, mao):
+        '''Fucao que separa ocorrencia de Par'''
         valores = [i[0] for i in mao]
         contaValor = defaultdict(lambda:0)
         for v in valores:
@@ -131,6 +139,7 @@ class Vencedor:
 
  # PONTUACAO
     def pontuacao(self, mao):
+        '''Executa as pontuações e retorna o valor de cada jogada'''
         if self.straight_flush(mao):
             return 9
         if self.quadra(mao):
@@ -157,7 +166,7 @@ class Vencedor:
 chamado em outros arquivos'''
 if __name__ == '__main__':
     mesa = ['DO', 'JS', '8C', '5O', 'JP']
-    jog1 = ['9S', 'AP', '4C', '3S', 'DS']
-    jog2 = ['KO', 'QC', 'QP', 'AO', 'KS']
+    jog1 = ['9S', 'AS', '4S', '3S', 'DS']
+    jog2 = ['KO', 'KC', 'DP', 'AO', 'KS']
     rodada = Vencedor(mesa, jog1, jog2)
     rodada.inicia()
