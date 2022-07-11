@@ -49,6 +49,24 @@ class Vencedor:
             texto = f'O Vencedor é a JOGADOR 2. Com o Jogo   {jogosPoker[lista[2]]}   com a mão  {self.jogador2}'
             print(texto)
             return texto
+        elif lista[0] == lista[1] and lista[0]== list[2]:
+            print(lista)
+            texto = f'Tres Jogos  de mão {jogosPoker[lista[0]]}  EMPATADOS'
+            print(texto)
+            return texto
+        elif lista[0] == lista[1]:
+            texto = f'Dois Jogos  de mão {jogosPoker[lista[0]]}  EMPATADOS'
+            print(texto)
+            return texto
+        elif  lista[0] == lista[2]:
+            texto = f'Dois Jogos  de mão {jogosPoker[lista[0]]}  EMPATADOS'
+            print(texto)
+            return texto
+        elif lista [1] == lista[2]:
+            texto = f'Dois Jogos  de mão {jogosPoker[lista[0]]}  EMPATADOS'
+            print(texto)
+            return texto
+        
 
     ## INICIO DAS REGRAS
     def straight_flush(self, mao):
