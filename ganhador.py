@@ -12,6 +12,9 @@ sem trocas de cartas
 
 ## Classes ##
 
+from collections import defaultdict
+
+
 class Vencedor:
     ''' Verifica melhor mão de Poker entre os 03 
     jogadores'''
@@ -27,46 +30,104 @@ class Vencedor:
     def inicia(self):
         lista = []
         maos = {'M': self.jogadorMesa, 'J1' :self.jogador1, 'J2': self.jogador2 }
-        for hand in maos:
+        ## Jogos possiveis de vitoria organizados em um dicionario
+        jogosPoker = {9:'straight_flush', 8:'quadra', 7:'full_house', 6:'flush', 5:'sequencia', 4:'trinca', 3:'dois_pares', 2:'par', 1:'Maior Carta'}
+
+        for hand in maos.values():
             pontos = self.pontuacao(hand)
             lista.append(pontos)
         if lista[0] > lista[1] and lista[0] > lista[2]:
-            texto = f'O Vencedor é a MESA. Com o Jogo {lista[0]} com a mão{self.jogadorMesa}'
+            texto = f'O Vencedor é a MESA. Com o Jogo {jogosPoker[lista[0]]} com a mão{self.jogadorMesa}'
             print(texto)
             return texto
         elif lista[1] > lista[0] and lista[1] > lista[2]:
-            texto = f'O Vencedor é o JOGADOR 1. Com o Jogo {lista[0]} com a mão{self.jogadorMesa}'
+            texto = f'O Vencedor é o JOGADOR 1. Com o Jogo {jogosPoker[lista[1]]} com a mão{self.jogador1}'
             print(texto)
             return texto
         elif lista[2] > lista[0] and lista[2] > lista[1]:
-                texto = f'O Vencedor é a JOGADOR 2. Com o Jogo {lista[0]} com a mão{self.jogadorMesa}'
-                print(texto)
-                return texto
+            texto = f'O Vencedor é a JOGADOR 2. Com o Jogo {jogosPoker[lista[2]]} com a mão{self.jogador2}'
+            print(texto)
+            return texto
 
     ## INICIO DAS REGRAS
     def straight_flush(self, mao):
-        pass
+        '''Funcao que checa a ocorrencia de Straight-Flush'''
+        if self.flush(mao) and self.sequencia(mao):
+            return True
+        else:
+            return False
 
     def quadra(self, mao):
-        pass
+        valores = [i[0] for i in mao]
+        contaValor = defaultdict(lambda:0)
+        for v in valores:
+            contaValor[v] += 1
+        if sorted (contaValor.values()) == [1,4]:
+            return True
+        else:
+            return False
 
     def full_house(self, mao):
-        pass
+        valores = [i[0] for i in mao]
+        contaValor = defaultdict(lambda:0)
+        for v in valores:
+            contaValor[v] += 1
+        if sorted (contaValor.values()) == [2,3]:
+            return True
+        else:
+            return False
 
     def flush(self, mao):
-        pass
+        naipes = [i[1] for i in mao]
+        if len(set(naipes)) == 1:
+            return True
+        else:
+            return False
 
     def sequencia(self, mao):
-        pass
+        valores = [i[0] for i in mao]
+        contaValor = defaultdict(lambda:0)
+        for v in valores:
+            contaValor[v] += 1
+        ordemValor = [Vencedor.ordem[i] for i in valores]
+        faixa = max(ordemValor) - min(ordemValor)
+        if len(set(contaValor.values())) == 1 and (faixa == 4):
+            return True
+        else:
+            if set(valores) == set(['A', '2', '3','4','5']):
+                return True
+            else:
+                return False
 
     def trinca(self, mao):
-        pass
+        valores = [i[0] for i in mao]
+        contaValor = defaultdict(lambda:0)
+        for v in valores:
+            contaValor[v] += 1
+        if sorted (contaValor.values()) == [3,1]:
+            return True
+        else:
+            return False
 
     def dois_pares(self, mao):
-        pass
+        valores = [i[0] for i in mao]
+        contaValor = defaultdict(lambda:0)
+        for v in valores:
+            contaValor[v] += 1
+        if sorted (contaValor.values()) == [1,2,2]:
+            return True
+        else:
+            return False
 
     def par(self, mao):
-        pass
+        valores = [i[0] for i in mao]
+        contaValor = defaultdict(lambda:0)
+        for v in valores:
+            contaValor[v] += 1
+        if 2 in contaValor.values():
+            return True
+        else:
+            return False
 
  # PONTUACAO
     def pontuacao(self, mao):
@@ -95,4 +156,8 @@ class Vencedor:
 ''' Para teste deste arquivo não roda quando 
 chamado em outros arquivos'''
 if __name__ == '__main__':
-    pass
+    mesa = ['DO', 'JS', '8C', '5O', 'JP']
+    jog1 = ['9S', 'AP', '4C', '3S', 'DS']
+    jog2 = ['KO', 'QC', 'QP', 'AO', 'KS']
+    rodada = Vencedor(mesa, jog1, jog2)
+    rodada.inicia()

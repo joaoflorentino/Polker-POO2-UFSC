@@ -287,9 +287,11 @@ class Telatk():
         lb10.place(relx=0.24, rely=0.00)
 
         # -=-=-=-=-=-=-=-=-=   FRAME  03 =-=-=-=-=-=-=-=-=-=
-        ## Botao Ver Vencedor
+        ## Botao Ver Vencedor que utiliza o arquivo ganhador classe vencedor
         self.resultado = Button(self.frame3, text='  VENCEDOR  ',bd=3, bg='#f7ef59', command= self.avalia )
         self.resultado.place(relx=0.01,rely=0.01)
+        ## Exibe o Resultado do jogo 
+        
     
     ## =-=-=-=-=-=-=  Funcoes que geram e organizam imagem =-=-=-=-=-=-=
     def reduzImage(self, carta):
