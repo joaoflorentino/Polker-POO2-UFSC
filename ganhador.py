@@ -33,10 +33,13 @@ class Vencedor:
         maos = {'M': self.jogadorMesa, 'J1' :self.jogador1, 'J2': self.jogador2 }
         ## Jogos possiveis de vitoria organizados em um dicionario
         jogosPoker = {9:'straight_flush', 8:'quadra', 7:'full_house', 6:'flush', 5:'sequencia', 4:'trinca', 3:'dois_pares', 2:'par', 1:'Maior Carta'}
-
+        
         for hand in maos.values():
             pontos = self.pontuacao(hand)
             lista.append(pontos)
+        # Impressão da lista de pontuação para verificar vencedor no terminal
+        print(lista)
+        
         if lista[0] > lista[1] and lista[0] > lista[2]:
             texto = f'O Vencedor é a MESA. Com o Jogo   {jogosPoker[lista[0]]}   com a mão  {self.jogadorMesa}'
             print(texto)
@@ -49,7 +52,7 @@ class Vencedor:
             texto = f'O Vencedor é a JOGADOR 2. Com o Jogo   {jogosPoker[lista[2]]}   com a mão  {self.jogador2}'
             print(texto)
             return texto
-        elif lista[0] == lista[1] and lista[0]== list[2]:
+        elif lista[0] == lista[1] and lista[0]== lista[2]:
             print(lista)
             texto = f'Tres Jogos  de mão {jogosPoker[lista[0]]}  EMPATADOS'
             print(texto)
@@ -67,7 +70,6 @@ class Vencedor:
             print(texto)
             return texto
         
-
     ## INICIO DAS REGRAS
     def straight_flush(self, mao):
         '''Funcao que checa a ocorrencia de Straight-Flush'''
